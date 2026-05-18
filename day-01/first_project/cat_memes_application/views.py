@@ -27,3 +27,13 @@ def memes(request):
 
     return render(request, "cat_memes_application/memes.html", context)
     # context is the final optional argument in render
+
+# with dynamic url (int:num_one, int:num_two)
+def addition(request, num_one, num_two):
+    context = {
+        "num_one": num_one,
+        "num_two": num_two,
+        "final_result": num_one + num_two
+    }
+
+    return render(request, "cat_memes_application/addition.html", context)
