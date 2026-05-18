@@ -1,0 +1,31 @@
+{% extends 'pokedex/base.html' %}
+
+{% block content %}
+
+<h2>Featured Pokemon</h2>
+
+{% if errors %}
+
+    <p>Errors: {{ errors }}</p>
+
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+
+    {% for pokemon in pokemon_list %}
+    
+    <li>
+        <a href="{% url 'pokemon_detail' name=pokemon.name %}">{{ pokemon.name }}</a>
+    </li>
+    
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'pokedex/base.html' %}
+
+{% block content %}
+
+<h2>Your Favorites</h2>
+
+{% for fav in favorite_pokemon %}
+
+    <div>
+        <h3>{{ fav.pokemon.name }}</h3>
+        <p>{{ fav.pokemon.pokemon_id }}</p>
+        <p>{% if fav.caught %}Caught{% else %}Uncaught{% endif %}</p>
+        <a href="{% url 'pokemon_detail' name=fav.pokemon.name %}">Link to page</a>
+    </div>
+
+{% endfor %}
+
+{% endblock %}

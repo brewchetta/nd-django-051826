@@ -1,0 +1,31 @@
+{% extends 'pokedex/base.html' %}
+
+{% block content %}
+
+<h2>{{ pokemon.name.capitalize }}</h2>
+
+{% if errors %}
+
+    <p>Errors: {{ errors }}</p>
+
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">❤️ Favorite {{ pokemon.name }}</button>
+</form>
+
+<p>#{{ pokemon.id }}</p>
+
+<p>Types:</p>
+
+{% for t in pokemon.types %}
+
+    <span>{{ t.type.name }}</span>
+
+{% endfor %}
+
+<img src="{{ pokemon.sprites.front_default }}" />
+
+{% endblock %}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Pokedex</title>
+</head>
+<body>
+
+    <nav>
+        <a href="{% url 'homepage' %}">Home</a>
+        <!-- request.user is the logged in user if they exist -->
+        <!-- if the object has a username we know someone is logged in -->
+        <!-- if they have no username we know they aren't real -->
+        <!-- request.user looks up the user in the database and that's how we know their username (or not!) -->
+        <!-- request is something we have access to by default in every view -->
+        {% if request.user.username %}
+        <a href="{% url 'favorites' %}">Your Favorites</a>
+        <a href="{% url 'logout_user' %}">Logout</a>
+        {% else %}
+        <a href="{% url 'signup' %}">Signup</a>
+        <a href="{% url 'login_user' %}">Login</a>
+        {% endif %}
+    </nav>
+
+    {% if request.user.username %}
+
+        <h1>Welcome to the Pokedex {{ request.user.username }}!!!</h1>
+
+    {% else %}
+
+        <h1>Welcome to the Pokedex!!!</h1>
+
+    {% endif %}
+    
+    <div id="main-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>
