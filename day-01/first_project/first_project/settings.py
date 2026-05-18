@@ -37,7 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cat_memes_application'
 ]
+
+# a VIEW is a python function which determines what happens when someone goes to a specified URL
+# the CLIENT makes requests to the server and the server then processes it with a VIEW
+# a lot of times a VIEW will have HTML attached to it so that we can return HTML to the client
+# the HTML is often referred to as a TEMPLATE
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
