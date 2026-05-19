@@ -1,0 +1,16 @@
+{% extends 'movie_app/base.html' %}
+{% block content %}
+
+    <h1>Upcoming Movies</h1>
+
+    <!-- start looping over movies -->
+    {% for movie in movies_list %}
+    <!-- make a div for each movie with info inside -->
+    <div>
+        <h2>{{ movie.title }}</h2>
+        <img src="{{ movie.poster }}" alt="{{ movie.title }}">
+        <p>{{ movie.description }}</p>
+    </div>
+    {% endfor %}
+
+{% endblock %}

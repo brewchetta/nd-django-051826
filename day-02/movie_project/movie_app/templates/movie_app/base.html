@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockbuster</title>
+</head>
+<body>
+
+    <nav>
+        <!-- the url needs the `name` for each path -->
+        <a href="{% url 'homepage' %}">Home</a>
+        <a href="{% url 'upcoming_movies' %}">Upcoming Movies</a>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
