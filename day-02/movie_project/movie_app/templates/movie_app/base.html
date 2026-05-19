@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blockbuster</title>
+    <!-- in order to load static files you need the special tag below -->
+    {% load static %}
+    <!-- and now we can actually load the css file -->
+    <link rel="stylesheet" href="{% static 'movie_app/main.css' %}">
 </head>
 <body>
 
