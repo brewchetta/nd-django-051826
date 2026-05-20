@@ -1,0 +1,28 @@
+{% extends 'todo_app/base.html' %}
+{% block content %}
+
+<h1>Authors On Our Reading List</h1>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Pen Name</th>
+        <th>Books</th>
+    </tr>
+
+    {% for author in authors %}
+
+    <tr>
+        <td>{{ author.name }}</td>
+        <td>{{ author.pen_name }}</td>
+        <td>
+            {% for book in author.books.all %}
+            <p>{{book.title}}</p>
+            {% endfor %}
+        </td>
+    </tr>
+
+    {% endfor %}
+</table>
+
+{% endblock %}

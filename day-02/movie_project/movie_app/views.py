@@ -30,4 +30,5 @@ def trailer(request, movie_index):
         "title": found_movie["title"],
         "youtube_id": found_movie["youtube_id"]
     }
+
     return render(request, 'movie_app/trailer.html', context)

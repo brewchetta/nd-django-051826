@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Todo
+from .models import Todo, Author
 from django.shortcuts import get_object_or_404
 
 def homepage(request):
@@ -14,3 +14,7 @@ def show_todo(request, pk):
     found_todo = get_object_or_404(Todo, pk=pk)
     context = { "todo_item": found_todo }
     return render(request, 'todo_app/show_todo.html', context)
+
+def authors(request):
+    context = { "authors": Author.objects.all() }
+    return render(request, 'todo_app/authors.html', context)

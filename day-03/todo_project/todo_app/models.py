@@ -56,3 +56,28 @@ class Todo(models.Model):
 
 # DELETE
 # yoga.delete()
+
+
+# Author
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+    pen_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+# Book
+class Book(models.Model):
+    title = models.CharField(max_length=100)
+    # the foreign key tracks the author this book belongs to
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name="books")
+    #                                  on_delete tells the book to get deleted whenever the author gets deleted
+    #                                                            related_name has to do with the method we'll 
+    #                                                            call when we try to get the books for the author
+
+    def __str__(self):
+        return self.title
+
+# has many - belongs to relationship
+# Author has many Books
+# Book belong to an Author
