@@ -1,0 +1,9 @@
+{% extends 'todo_app/base.html' %}
+{% block content %}
+    
+    <h1>Show the individual todo item</h1>
+
+    <h2>{{ todo_item.task_name }}</h2>
+    <p>{{ todo_item.description }}</p>
+
+{% endblock %}

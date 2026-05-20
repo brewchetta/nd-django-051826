@@ -21,6 +21,12 @@ class Todo(models.Model):
     completed = models.BooleanField() # boolean
     # some_number = models.IntegerField() # integer / number
 
+    # Sets the time only once when the object is first created
+    created_at = models.DateTimeField(auto_now_add=True)
+    # Often used alongside created_at to track last modification
+    updated_at = models.DateTimeField(auto_now=True)
+
+    # when looking at the string version of a model the __str__ shows the name
     def __str__(self):
         return self.task_name
 

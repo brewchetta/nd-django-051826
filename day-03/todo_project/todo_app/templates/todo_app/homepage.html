@@ -1,0 +1,40 @@
+{% extends 'todo_app/base.html' %}
+{% block content %}
+
+    <h1>Welcome to the Todo List!</h1>
+
+    {% for item in all_todos %}
+    
+    <div>
+        <h2>{{ item.task_name }}</h2>
+        <p>{{ item.description }}</p>
+        {% if item.completed %}
+            <p>Complete!</p>
+        {% else %}
+            <p>Incomplete...</p>
+        {% endif %}
+    </div>
+
+    {% endfor %}
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Task Name</th>
+            <th>Description</th>
+            <th>Completed</th>
+        </tr>
+
+        {% for item in all_todos %}
+        
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.task_name }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.completed }}</td>
+        </tr>
+
+        {% endfor %}
+    </table>
+    
+{% endblock %}
