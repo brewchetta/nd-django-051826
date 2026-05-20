@@ -5,11 +5,10 @@ from django.db import models
 
 # a model is considered to be 
 
-# User Table
+# Todo Table
 
-# |   id  |   first_name  |   last_name   |   email           |
-# |   1   |   Chett       |   Tiller      |   chett@chett.net |
-# |   2   |   Octavia     |   BaseExcepti |   octavia@octavia |
+# |   id  |   task_name  |   description   |   completed    |
+# |   1   |   laundry    |   "do laundry"  |   True         |
 
 # Todo Model
 class Todo(models.Model):
@@ -83,6 +82,7 @@ class Book(models.Model):
     #                                  on_delete tells the book to get deleted whenever the author gets deleted
     #                                                            related_name has to do with the method we'll 
     #                                                            call when we try to get the books for the author
+
 
     # many to many field
     genres = models.ManyToManyField(Genre, blank=True, null=True)

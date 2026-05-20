@@ -1,6 +1,24 @@
 {% extends 'todo_app/base.html' %}
 {% block content %}
 
+    <!-- search forms -->
+
+    <!-- search completed/uncompleted -->
+    <form>
+        <select name="completed" id="completed">
+            <option value="true">Completed</option>
+            <option value="false">Incomplete</option>
+        </select>
+        <input type="submit" value="Filter">
+    </form>
+
+    <!-- search by task name -->
+    <form>
+        <label for="name">Search by task name:</label>
+        <input type="text" id="name" name="name">
+        <input type="submit" value="Search">
+    </form>
+
     <h1>Welcome to the Todo List!</h1>
 
     {% for item in all_todos %}
