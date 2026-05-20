@@ -17,7 +17,7 @@
         <td>{{ author.pen_name }}</td>
         <td>
             {% for book in author.books.all %}
-            <p>{{book.title}}</p>
+            <p>{{book.title}} {{ book.genres.all }}</p>
             {% endfor %}
         </td>
     </tr>

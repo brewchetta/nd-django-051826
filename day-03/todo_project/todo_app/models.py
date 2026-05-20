@@ -66,6 +66,15 @@ class Author(models.Model):
     def __str__(self):
         return self.name
 
+
+# Genre
+class Genre(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
 # Book
 class Book(models.Model):
     title = models.CharField(max_length=100)
@@ -74,6 +83,11 @@ class Book(models.Model):
     #                                  on_delete tells the book to get deleted whenever the author gets deleted
     #                                                            related_name has to do with the method we'll 
     #                                                            call when we try to get the books for the author
+
+    # many to many field
+    genres = models.ManyToManyField(Genre, blank=True, null=True)
+    # books can have many genres && genres can have many books
+    # blank=True and null=True mean a book doesn't need to have genres
 
     def __str__(self):
         return self.title
