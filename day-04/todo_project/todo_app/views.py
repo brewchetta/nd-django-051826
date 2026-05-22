@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Todo
 from .forms import CreateTodoForm, EditTodoForm
 
+# TODOS VIEWS ####################
+
 def homepage(request):
     context = { "all_todos": Todo.objects.all() }
     return render(request, 'todo_app/homepage.html', context)
@@ -53,3 +55,11 @@ def delete_todo(request, pk):
 
     context = { "found_todo": found_todo }
     return render(request, 'todo_app/delete_todo.html', context)
+
+# TEAS VIEWS ####################
+
+from .models import Tea
+
+def tea_index(request):
+    context = { "all_teas": Tea.objects.all() }
+    return render(request, 'todo_app/tea_index.html', context)

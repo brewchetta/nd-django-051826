@@ -1,0 +1,18 @@
+{% extends 'todo_app/base.html' %}
+{% block content %}
+
+    {% for tea in all_teas %}
+
+        <h2>{{ tea.name }}</h2>
+        <img height="300" src="{{ tea.image_url }}" alt="{{ tea.name }}">
+        <p>{{ tea.description }}</p>
+        
+        {% if tea.caffeinated %}
+            <p>Caffeinated</p>
+        {% else %}
+            <p>Not Caffeinated</p>
+        {% endif %}
+
+    {% endfor %}
+
+{% endblock %}
