@@ -59,7 +59,53 @@ def delete_todo(request, pk):
 # TEAS VIEWS ####################
 
 from .models import Tea
+from .forms import TeaForm
 
 def tea_index(request):
     context = { "all_teas": Tea.objects.all() }
-    return render(request, 'todo_app/tea_index.html', context)
+    return render(request, 'teas/tea_index.html', context)
+
+def tea_create(request):
+    if request.method == "POST":
+        form = TeaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('tea_index')
+        else:
+            context = { "form": form }
+            return render(request, 'teas/tea_create.html', context)
+
+    form = TeaForm()
+    context = { 'form': form }
+    return render(request, 'teas/tea_create.html', context)
+
+def tea_edit(request, pk):
+    found_tea = get_object_or_404(Tea, pk=pk)
+
+    if request.method == "POST":
+        form = TeaForm(request.POST, instance=found_tea)
+        if form.is_valid():
+            form.save()
+            return redirect('tea_index')
+        else:
+            context = {
+                "form": TeaForm(instance=found_tea),
+                "tea": found_tea
+            }
+            return render(request, 'teas/tea_edit.html', context)
+
+    context = {
+        "form": TeaForm(instance=found_tea),
+        "tea": found_tea
+    }
+    return render(request, 'teas/tea_edit.html', context)
+
+def tea_delete(request, pk):
+    found_tea = get_object_or_404(Tea, pk=pk)
+
+    if request.method == "POST":
+        found_tea.delete()
+        return redirect('tea_index')
+
+    context = { "tea": found_tea }
+    return render(request, 'teas/tea_delete.html', context)

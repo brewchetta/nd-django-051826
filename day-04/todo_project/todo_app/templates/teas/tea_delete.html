@@ -1,0 +1,14 @@
+{% extends 'todo_app/base.html' %}
+{% block content %}
+
+<h1>Are you sure you want to delete {{ tea.name }}?</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="submit" value="Delete Tea">
+</form>
+
+<a href="{% url 'tea_index' %}">Back</a>
+
+{% endblock %}

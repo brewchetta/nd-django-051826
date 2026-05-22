@@ -13,6 +13,9 @@
             <p>Not Caffeinated</p>
         {% endif %}
 
+        <a href="{% url 'tea_edit' pk=tea.id %}">Edit</a>
+        <a href="{% url 'tea_delete' pk=tea.id %}">Delete</a>
+
     {% endfor %}
 
 {% endblock %}
