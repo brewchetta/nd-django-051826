@@ -1,7 +1,12 @@
 from django import forms
 from .models import Todo
 
-class TodoForm(forms.ModelForm):
+class CreateTodoForm(forms.ModelForm):
     class Meta:
         model = Todo
         fields = ['name']
+
+class EditTodoForm(forms.ModelForm):
+    class Meta:
+        model = Todo
+        fields = ['name', 'completed']

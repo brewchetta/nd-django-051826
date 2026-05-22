@@ -1,0 +1,28 @@
+{% extends 'todo_app/base.html' %}
+{% block content %}
+
+<h1>Are you sure you want to delete {{ found_todo.name }}</h1>
+
+<!-- the form to signify the item is being deleted -->
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="submit" value="Confirm Delete">
+</form>
+
+<!-- sends user back if they don't want to delete -->
+<a href="{% url 'homepage' %}">Back</a>
+
+{% endblock %}
+
+<!-- RETURN AT 12:20 EST -->
+<!-- RETURN AT 12:20 EST -->
+<!-- RETURN AT 12:20 EST -->
+<!-- RETURN AT 12:20 EST -->
+<!-- RETURN AT 12:20 EST -->
+<!-- RETURN AT 12:20 EST -->
+<!-- RETURN AT 12:20 EST -->
+<!-- RETURN AT 12:20 EST -->
+<!-- RETURN AT 12:20 EST -->
+<!-- RETURN AT 12:20 EST -->
+<!-- RETURN AT 12:20 EST -->

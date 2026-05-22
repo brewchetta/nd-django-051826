@@ -7,6 +7,8 @@
 
         <h2>{{ todo.name }}</h2>
         <p>Complete: {{ todo.completed }}</p>
+        <a href="{% url 'edit_todo' pk=todo.id %}">Edit</a>
+        <a href="{% url 'delete_todo' pk=todo.id %}">Delete</a>
 
     {% endfor %}
 

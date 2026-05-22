@@ -6,6 +6,7 @@
 
 <form method="POST">
 
+    <!-- CSRF is a security token -->
     {% csrf_token %}
 
     {{ form.as_p }}
