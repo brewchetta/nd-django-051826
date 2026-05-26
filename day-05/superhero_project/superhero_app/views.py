@@ -128,6 +128,22 @@ def logout_auth(request):
     return redirect('home')
 
 
+from .forms import UserProfileForm
+
+# PROFILE #
+@login_required
+def profile(request):
+    if request.method == "POST":
+        form = UserProfileForm(request.POST, instance=request.user.profile)
+        context = { 'form': form }
+        if form.is_valid():
+            form.save()
+        return render(request, 'superhero_app/profile.html', context)
+        
+    context = { 'form': UserProfileForm(instance=request.user.profile) }
+    return render(request, 'superhero_app/profile.html', context)
+
+
 # MY SUPERHEROES #
 @login_required
 def my_superheroes(request):

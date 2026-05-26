@@ -1,5 +1,5 @@
 from django import forms
-from .models import Superhero
+from .models import Superhero, UserProfile
 
 class SuperheroForm(forms.ModelForm):
     class Meta:
@@ -23,3 +23,8 @@ class SignUpForm(UserCreationForm):
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=100)
     password = forms.CharField(widget=forms.PasswordInput)
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['bio', 'favorite_superhero', 'status']

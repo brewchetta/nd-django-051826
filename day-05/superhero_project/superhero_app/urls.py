@@ -16,6 +16,8 @@ urlpatterns = [
     path('signup', views.signup, name="signup"),
     path('login', views.login_auth, name="login_auth"),
     path('logout', views.logout_auth, name="logout_auth"),
+    path('profile', views.profile, name="profile"),
+        # ^^^ login required
 
     # user / superhero paths
     path('my-superheroes', views.my_superheroes, name='my_superheroes'),
