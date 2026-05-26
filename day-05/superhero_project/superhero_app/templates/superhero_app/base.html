@@ -7,6 +7,10 @@
 </head>
 <body>
 
+    {% if request.user.is_authenticated %}
+    <p>Welcome {{ request.user.username }}</p>
+    {% endif %}
+
     <nav>
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'superhero_index' %}">Superheroes</a>

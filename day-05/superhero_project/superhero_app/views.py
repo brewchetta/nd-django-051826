@@ -63,3 +63,26 @@ def superhero_delete(request, primary_key):
     # GET #
     context = { "superhero": found_hero }
     return render(request, 'superhero_app/superhero_delete.html', context)
+
+from .forms import SignUpForm
+from django.contrib.auth import login
+
+# SIGNUP #
+def signup(request):
+    # POST #
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            # form.save returns the new user
+            user = form.save()
+            # login will send a session cookie to the user to represent them being logged in
+            login(request, user)
+            return redirect('home')
+        else:
+            context = { "form": form }
+            return render(request, 'superhero_app/signup.html', context)
+
+    # GET #
+    context = { "form": SignUpForm() }
+    return render(request, 'superhero_app/signup.html', context)
+    
