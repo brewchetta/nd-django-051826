@@ -1,0 +1,21 @@
+{% extends 'superhero_app/base.html' %}
+{% block content %}
+
+<h1>All Registered Superheroes</h1>
+
+<ul>
+
+    {% for hero in superheroes %}
+
+    <li>
+        <h2>{{ hero.alias }}</h2>
+        <h3>{{ hero.real_name }}</h3>
+        <p>{{ hero.powers }}</p>
+        <p>{{ hero.origin_story }}</p>
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}
