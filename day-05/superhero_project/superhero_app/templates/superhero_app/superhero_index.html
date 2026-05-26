@@ -14,6 +14,11 @@
         <a href="{% url 'superhero_delete' hero.id %}">Delete</a>
         <p>{{ hero.powers }}</p>
         <p>{{ hero.origin_story }}</p>
+        {% if hero.user %}
+        <p>Registered by {{ hero.user.username }}</p>
+        {% else %}
+        <p>Registered by [DELETED]</p>
+        {% endif %}
     </li>
 
     {% endfor %}

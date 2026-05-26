@@ -15,7 +15,9 @@
     <nav>
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'superhero_index' %}">Superheroes</a>
+        {% if request.user.is_authenticated %}
         <a href="{% url 'superhero_create' %}">Register Superhero</a>
+        {% endif %}
         <a href="{% url 'signup' %}">Signup</a>
         <a href="{% url 'login_auth' %}">Login</a>
     </nav>

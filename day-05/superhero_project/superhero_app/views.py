@@ -12,14 +12,20 @@ def superhero_index(request):
 
 from .forms import SuperheroForm
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 # SUPERHERO CREATE #
+@login_required
+# login required gives a 404 if someone isn't logged in
 def superhero_create(request):
     # POST #
     if request.method == "POST":
         form = SuperheroForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_superhero = form.save()
+            # associate user with new superhero
+            new_superhero.user = request.user
+            new_superhero.save()
             return redirect('superhero_index')
         else:
             context = { "form": form }
@@ -29,6 +35,8 @@ def superhero_create(request):
     form = SuperheroForm()
     context = { 'form': form }
     return render(request, 'superhero_app/superhero_create.html', context)
+
+
 
 from django.shortcuts import get_object_or_404
 
@@ -118,3 +126,11 @@ def logout_auth(request):
     # logout the user by deleting the session cookie
     logout(request)
     return redirect('home')
+
+
+# MY SUPERHEROES #
+@login_required
+def my_superheroes(request):
+    # get all superheroes associated with the logged in user
+    context = { 'superheroes': request.user.superheroes.all() }
+    return render(request, 'superhero_app/superhero_index.html', context)
