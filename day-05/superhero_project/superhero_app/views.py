@@ -29,3 +29,37 @@ def superhero_create(request):
     form = SuperheroForm()
     context = { 'form': form }
     return render(request, 'superhero_app/superhero_create.html', context)
+
+from django.shortcuts import get_object_or_404
+
+# SUPERHERO EDIT #
+def superhero_edit(request, primary_key):
+    found_hero = get_object_or_404(Superhero, pk=primary_key)
+
+    # POST #
+    if request.method == "POST":
+        form = SuperheroForm(request.POST, instance=found_hero)
+        if form.is_valid():
+            form.save()
+            return redirect('superhero_index')
+        else:
+            context = { "form": form }
+            return render(request, 'superhero_app/superhero_edit.html', context)
+
+    # GET #
+    form = SuperheroForm(instance=found_hero)
+    context = { "form": form }
+    return render(request, 'superhero_app/superhero_edit.html', context)
+
+# SUPERHERO DELETE #
+def superhero_delete(request, primary_key):
+    found_hero = get_object_or_404(Superhero, pk=primary_key)
+
+    # POST #
+    if request.method == "POST":
+        found_hero.delete()
+        return redirect('superhero_index')
+
+    # GET #
+    context = { "superhero": found_hero }
+    return render(request, 'superhero_app/superhero_delete.html', context)

@@ -10,6 +10,8 @@
     <li>
         <h2>{{ hero.alias }}</h2>
         <h3>{{ hero.real_name }}</h3>
+        <a href="{% url 'superhero_edit' hero.id %}">Edit</a>
+        <a href="{% url 'superhero_delete' hero.id %}">Delete</a>
         <p>{{ hero.powers }}</p>
         <p>{{ hero.origin_story }}</p>
     </li>
