@@ -19,3 +19,7 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
         # password1 / password2 is a password confirmation pattern
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=100)
+    password = forms.CharField(widget=forms.PasswordInput)

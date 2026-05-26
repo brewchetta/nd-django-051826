@@ -9,12 +9,15 @@
 
     {% if request.user.is_authenticated %}
     <p>Welcome {{ request.user.username }}</p>
+    <a href="{% url 'logout_auth' %}">Logout</a>
     {% endif %}
 
     <nav>
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'superhero_index' %}">Superheroes</a>
         <a href="{% url 'superhero_create' %}">Register Superhero</a>
+        <a href="{% url 'signup' %}">Signup</a>
+        <a href="{% url 'login_auth' %}">Login</a>
     </nav>
     
     {% block content %}

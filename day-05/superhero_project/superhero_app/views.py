@@ -86,3 +86,35 @@ def signup(request):
     context = { "form": SignUpForm() }
     return render(request, 'superhero_app/signup.html', context)
     
+from .forms import LoginForm
+from django.contrib.auth import authenticate
+
+# LOGIN #
+def login_auth(request):
+    # POST #
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            # get the username & password from the validated form
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            # authenticate checks that the user exists and has this password
+            user = authenticate(request, username=username, password=password)
+            if user:
+                # if user exists then log them in
+                login(request, user)
+                return redirect('home')
+        context = { 'form': form, 'error': 'Invalid username or password' }
+        return render(request, 'superhero_app/login.html', context)
+
+    # GET #
+    context = { 'form': LoginForm() }
+    return render(request, 'superhero_app/login.html', context)
+
+from django.contrib.auth import logout
+
+# LOGOUT #
+def logout_auth(request):
+    # logout the user by deleting the session cookie
+    logout(request)
+    return redirect('home')
