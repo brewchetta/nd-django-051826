@@ -4,7 +4,7 @@ from .models import Superhero, UserProfile
 class SuperheroForm(forms.ModelForm):
     class Meta:
         model = Superhero
-        fields = ['alias', 'real_name', 'powers', 'origin_story']
+        fields = ['alias', 'real_name', 'powers', 'origin_story', 'portrait']
 
 
 from django.contrib.auth.forms import UserCreationForm

@@ -19,6 +19,9 @@
         {% else %}
         <p>Registered by [DELETED]</p>
         {% endif %}
+        {% if hero.portrait %}
+        <img src="{{ hero.portrait.url }}" alt="{{ hero.alias }}">
+        {% endif %}
     </li>
 
     {% endfor %}

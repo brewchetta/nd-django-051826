@@ -12,12 +12,18 @@ class Superhero(models.Model):
     # user association
     # the user can be null a.k.a. deleted
     user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="superheroes", null=True, blank=True)
+    # ImageField for uploading images to the superheroes folder
+    portrait = models.ImageField(upload_to='superheroes', blank=True, null=True)
 
     def __str__(self):
         return self.alias
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+
+
 
 
 # EXTENDED USER #

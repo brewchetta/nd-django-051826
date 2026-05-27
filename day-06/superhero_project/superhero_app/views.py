@@ -20,7 +20,7 @@ from django.contrib.auth.decorators import login_required
 def superhero_create(request):
     # POST #
     if request.method == "POST":
-        form = SuperheroForm(request.POST)
+        form = SuperheroForm(request.POST, request.FILES)
         if form.is_valid():
             new_superhero = form.save()
             # associate user with new superhero
@@ -46,7 +46,7 @@ def superhero_edit(request, primary_key):
 
     # POST #
     if request.method == "POST":
-        form = SuperheroForm(request.POST, instance=found_hero)
+        form = SuperheroForm(request.POST, request.FILES, instance=found_hero)
         if form.is_valid():
             form.save()
             return redirect('superhero_index')
