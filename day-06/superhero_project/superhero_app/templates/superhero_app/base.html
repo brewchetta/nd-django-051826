@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Registry</title>
+</head>
+<body>
+
+    {% if request.user.is_authenticated %}
+    <p>Welcome {{ request.user.username }}</p>
+    <a href="{% url 'logout_auth' %}">Logout</a>
+    {% endif %}
+
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'superhero_index' %}">Superheroes</a>
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'superhero_create' %}">Register Superhero</a>
+        {% endif %}
+        <a href="{% url 'signup' %}">Signup</a>
+        <a href="{% url 'login_auth' %}">Login</a>
+    </nav>
+    
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

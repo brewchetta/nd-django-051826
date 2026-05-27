@@ -1,0 +1,13 @@
+{% extends 'superhero_app/base.html' %}
+{% block content %}
+
+<h1>Profile</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+    <input type="submit" value="Edit">
+</form>
+
+{% endblock %}
