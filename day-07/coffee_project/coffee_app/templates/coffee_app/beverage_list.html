@@ -1,0 +1,26 @@
+{% extends 'coffee_app/base.html' %}
+{% block content %}
+
+<h1>Beverages</h1>
+
+<!-- all_beverages is the list of items -->
+<!-- this will be Beverage.objects.all() -->
+{% for bev in all_beverages %}
+
+<div>
+
+    <a href="{% url 'beverage_detail' bev.id %}">
+        <h2>{{ bev.name }}</h2>
+    </a>
+    
+    {% if bev.caffeinated %}
+        <p>Caffeinated</p>
+    {% else %}
+        <p>Not caffeinated</p>
+    {% endif %}
+
+</div>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'coffee_app/base.html' %}
+{% block content %}
+
+<!-- beverage is the context_object_name -->
+<h1>{{ beverage.name }}</h1>
+<p>Caffeinated: {{ beverage.caffeinated }}</p>
+<p>id: {{ beverage.id }}</p>
+
+{% endblock %}
