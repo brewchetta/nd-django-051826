@@ -1,0 +1,12 @@
+{% extends 'coffee_app/base.html' %}
+{% block content %}
+
+<h1>Is it time for a morning beverage?</h1>
+
+{% if is_before_noon %}
+    <p>Yes it's still morning, have more morning bevs!</p>
+{% else %}
+    <p>No it's not morning anymore, no more coffee for you...</p>
+{% endif %}
+
+{% endblock %}
