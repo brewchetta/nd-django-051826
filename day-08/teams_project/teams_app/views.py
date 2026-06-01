@@ -127,7 +127,7 @@ class PlayerDetailView(APIView):
         try:
             return Player.objects.get(pk=pk)
         except Player.DoesNotExist:
-            raise Http404
+            raise Http404 # will show a generic 404 message
 
     # GET #
     def get(self, request, pk):
@@ -136,5 +136,17 @@ class PlayerDetailView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     # PATCH #
+    def patch(self, request, pk):
+        player = self.get_player(pk)
+        serializer = PlayerSerializer(player, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     # DELETE #
+    def delete(self, request, pk):
+        player = self.get_player(pk)
+        player.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
