@@ -1,6 +1,8 @@
 from rest_framework import serializers
-# serializers shape data and choose what we do and don't send when people ask for it
 from .models import Sport, SportTeam, Game, Player
+
+# serializers shape data and choose what we do and don't send when people ask for it
+# serializer names will generally be ModelName + Serializer to make it clear what they're for
 
 class SportSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,7 +13,7 @@ class SportSerializer(serializers.ModelSerializer):
 class SportTeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = SportTeam
-        fields = ['id', 'name', 'location', 'uniform_colors', 'sport']
+        fields = ['id', 'name', 'location', 'uniform_colors', 'sport'] # only include these fields
 
 
 class GameSerializer(serializers.ModelSerializer):

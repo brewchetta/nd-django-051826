@@ -6,6 +6,8 @@ from rest_framework import status
 
 from .serializers import SportSerializer
 
+# SPORTS & TEAMS VIEWS --- FUNCTIONAL ################################################
+
 # api/v1/sports
 @api_view(['GET', 'POST']) # this decorator makes it so we can only use GET and POST requests
 def sport_list(request):
@@ -84,19 +86,9 @@ def sport_team_detail(request, pk):
     if request.method == 'DELETE':
         team.delete() # delete the item
         return Response(status=status.HTTP_204_NO_CONTENT) # send an empty response
+    
 
-
-# /api/v1/games
-# /api/v1/games/:id
-# using a very fancy class based view that does all the heavy lifting
-from rest_framework import viewsets
-from .serializers import GameSerializer
-class GameViewset(viewsets.ModelViewSet):
-    queryset = Game.objects.all()
-    serializer_class = GameSerializer
-
-
-# PLAYER VIEWS #
+# PLAYER VIEWS --- CLASS BASED ####################################################
 
 from rest_framework.views import APIView
 from .models import Player
@@ -123,6 +115,7 @@ from django.http import Http404
 
 class PlayerDetailView(APIView):
 
+    # PLAYER HELPER #
     def get_player(self, pk):
         try:
             return Player.objects.get(pk=pk)
@@ -150,3 +143,15 @@ class PlayerDetailView(APIView):
         player = self.get_player(pk)
         player.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# GAMES VIEWS --- CLASS BASED W/ VIEWSETS #######################################
+
+# /api/v1/games
+# /api/v1/games/:id
+# using a very fancy class based view that does all the heavy lifting
+from rest_framework import viewsets
+from .serializers import GameSerializer
+class GameViewset(viewsets.ModelViewSet):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer

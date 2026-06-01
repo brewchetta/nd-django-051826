@@ -19,6 +19,7 @@ class SportTeam(models.Model):
         return self.name
 
 
+# GAME #
 class Game(models.Model):
     home_team = models.ForeignKey(SportTeam, on_delete=models.CASCADE, related_name='home_games')
     away_team = models.ForeignKey(SportTeam, on_delete=models.CASCADE, related_name='away_games')
@@ -27,8 +28,9 @@ class Game(models.Model):
 
     def __str__(self):
         return f"{self.home_team.name} vs {self.away_team.name}"
-    
 
+
+# PLAYER #
 class Player(models.Model):
     name = models.CharField(max_length=150)
     position = models.CharField(max_length=100)

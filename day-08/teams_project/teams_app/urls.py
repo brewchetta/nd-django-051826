@@ -2,10 +2,15 @@ from django.urls import path, include
 from . import views
 from rest_framework import routers
 
+# the api_path prefix allows us to keep all prefixes the same and is easily changed
 API_PATH = 'api/v1/'
+# it's best to use /api/v1 to show these routes are for the api and they belong to a specific version
+# versioning like this makes it easier to create deprecated routes later
 
+# ROUTERS --- USED W/ VIEWSETS ###################################
 router = routers.DefaultRouter()
 router.register(r"api/v1/games", views.GameViewset)
+##################################################################
 
 urlpatterns = [
     # url for seeing all sports & creating new sports
@@ -27,7 +32,7 @@ urlpatterns = [
     path(API_PATH + 'players/<int:pk>', views.PlayerDetailView.as_view()),
 ]
 
-# RESTful conventions
+# RESTful routing conventions
 # GET       /sports --> read all the sports
 # POST      /sports --> create a new sport
 # GET       /sports/:id --> read a specific sport
