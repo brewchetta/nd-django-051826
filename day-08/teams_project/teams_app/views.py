@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-from .models import Sport, SportTeam
+from .models import Sport, SportTeam, Game
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -84,3 +84,57 @@ def sport_team_detail(request, pk):
     if request.method == 'DELETE':
         team.delete() # delete the item
         return Response(status=status.HTTP_204_NO_CONTENT) # send an empty response
+
+
+# /api/v1/games
+# /api/v1/games/:id
+# using a very fancy class based view that does all the heavy lifting
+from rest_framework import viewsets
+from .serializers import GameSerializer
+class GameViewset(viewsets.ModelViewSet):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+
+
+# PLAYER VIEWS #
+
+from rest_framework.views import APIView
+from .models import Player
+from .serializers import PlayerSerializer
+
+class PlayerListView(APIView):
+
+    # GET #
+    def get(self, request):
+        players = Player.objects.all()
+        serializer = PlayerSerializer(players, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # POST #
+    def post(self, request):
+        serializer = PlayerSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+from django.http import Http404
+
+class PlayerDetailView(APIView):
+
+    def get_player(self, pk):
+        try:
+            return Player.objects.get(pk=pk)
+        except Player.DoesNotExist:
+            raise Http404
+
+    # GET #
+    def get(self, request, pk):
+        player = self.get_player(pk)
+        serializer = PlayerSerializer(player)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # PATCH #
+
+    # DELETE #
